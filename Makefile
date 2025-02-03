@@ -1,10 +1,12 @@
 # Este archivo define comandos útiles para manejar los contenedores Docker.
 
+.PHONY: react react-ts down
+
 react:
-	docker-compose build
-	docker-compose down --remove-orphans
-	docker-compose up -d
-	docker exec -it react /bin/bash
+	docker-compose up --build react
+
+react-ts:
+	docker-compose up --build react-ts
 
 down:
 	docker-compose down
