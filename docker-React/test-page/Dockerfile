@@ -5,13 +5,16 @@ FROM node:18
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package.json ./
 
 # Install dependencies
 RUN npm install
 
+# Install 'react-scripts' globally for development
+RUN npm install -g react-scripts
+
 # Copy the rest of the application code
-COPY . .
+COPY . ./
 
 # Expose the port the app runs on
 EXPOSE 3000
