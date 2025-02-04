@@ -17,7 +17,7 @@ RUN npm install -g react-scripts
 COPY . ./
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 3001
 
 # Define the command to run the app
 CMD ["npm", "start"]
