@@ -5,9 +5,9 @@
     "module": "esnext",
     "target": "es5",
     "lib": [
-      "esnext",
       "dom",
-      "dom.iterable"
+      "dom.iterable",
+      "esnext"
     ],
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
@@ -26,7 +26,6 @@
     "noEmit": true
   },
   "include": [
-    "./src",
-    "./webpack.config.ts"
+    "src"
   ]
 }
