@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   react:
     build: ./dockerReact/jsPage
@@ -11,8 +11,8 @@ services:
       - CHOKIDAR_USEPOLLING=true
     container_name: react
     restart: unless-stopped
-    stdin_open: true  # Habilitar entrada interactiva
-    tty: true         # Habilitar tty
+    stdin_open: true # Habilitar entrada interactiva
+    tty: true # Habilitar tty
     command: npm start
 
   react-ts:
@@ -26,6 +26,30 @@ services:
       - CHOKIDAR_USEPOLLING=true
     container_name: react-ts
     restart: unless-stopped
-    stdin_open: true  # Habilitar entrada interactiva
-    tty: true         # Habilitar tty
+    stdin_open: true # Habilitar entrada interactiva
+    tty: true # Habilitar tty
     command: npm start
+
+  docker-sqlite:
+    build:
+      context: ./dockerSQlite # Asegúrate de tener este directorio con tu Dockerfile de SQLite
+    volumes:
+      - ./dockerSQlite/db:/db # El volumen persistente para almacenar la base de datos
+    command: sqlite3 /db/mydatabase.db # Comando para ejecutar SQLite con la base de datos
+    container_name: dockerSQlite
+    restart: unless-stopped
+    expose:
+      - "8080" # Exponer el puerto (puedes omitirlo si no es necesario)
+    stdin_open: true # Habilitar entrada interactiva
+    tty: true # Habilitar tty
+
+  docker-adminer:
+    build: ./dockerAdminer  # La carpeta con el Dockerfile de Adminer
+    ports:
+      - "8081:8081"  # Exponer el puerto 8081 para acceder a Adminer desde el navegador
+    container_name: docker-adminer
+    restart: unless-stopped
+    depends_on:
+      - docker-sqlite
+    volumes:
+    - ./dockerAdminer/my_apache.conf:/etc/apache2/conf-enabled/my_apache.conf

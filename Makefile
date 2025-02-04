@@ -8,6 +8,12 @@ react:
 react-ts:
 	docker-compose up --build react-ts
 
+sqLite:
+	docker-compose up --build docker-sqlite
+
+adminer:
+	docker-compose up --build docker-adminer
+
 down:
 	docker-compose down
 

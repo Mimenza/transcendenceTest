@@ -1,0 +1,14 @@
+# Usa una imagen base oficial de Ubuntu
+FROM ubuntu:latest
+
+# Instalación de dependencias necesarias (como SQLite)
+RUN apt-get update && apt-get install -y sqlite3
+
+# Crear un directorio para la base de datos
+RUN mkdir /db
+
+# Exponer el puerto (si necesitas exponer uno para interactuar con el contenedor)
+EXPOSE 8080
+
+# Ejecutar SQLite cuando se inicie el contenedor
+CMD ["sqlite3"]
