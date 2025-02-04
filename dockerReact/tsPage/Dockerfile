@@ -1,5 +1,5 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18
+# Usa una imagen base de Node.js 16
+FROM node:16
 
 # Set the working directory
 WORKDIR /app
@@ -12,6 +12,9 @@ RUN npm install
 
 # Install 'react-scripts' globally for development
 RUN npm install -g react-scripts
+
+# Install Tailwind CSS and PostCSS
+RUN npm install tailwindcss postcss autoprefixer
 
 # Copy the rest of the application code
 COPY . ./

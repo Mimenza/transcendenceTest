@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg'; // Ensure the logo is imported correctly
 import './App.css';
+import Test from './screens/test';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
+      <Test />
     </div>
   );
 };
