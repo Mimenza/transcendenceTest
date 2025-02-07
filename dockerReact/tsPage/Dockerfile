@@ -16,6 +16,12 @@ RUN npm install -g react-scripts
 # Install Tailwind CSS and PostCSS
 RUN npm install tailwindcss postcss autoprefixer
 
+RUN npm install lucide-react
+
+RUN npm install @mui/material @emotion/react @emotion/styled
+
+RUN npm install --save-dev @types/react
+
 # Copy the rest of the application code
 COPY . ./
 
