@@ -22,6 +22,7 @@ RUN npm install @mui/material @emotion/react @emotion/styled
 
 RUN npm install --save-dev @types/react
 
+RUN npm install react-router-dom
 # Copy the rest of the application code
 COPY . ./
 
