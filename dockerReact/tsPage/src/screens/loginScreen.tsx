@@ -1,10 +1,24 @@
-import React from "react";
-import {useState} from "react";
+import React, {useState} from "react";
 import {Eye, EyeOff} from "lucide-react";
 import {Link} from "react-router-dom";
 
 const LoginScreen = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        alert(`Email: ${email}\nPassword: ${password}\nMethod: Standard`);
+    };
+
+    const handleGoogleLogin = () => {
+        alert(`Method: Google`);
+    };
+
+    const handle42Login = () => {
+        alert(`Method: 42`);
+    };
 
     return (
         <section
@@ -33,7 +47,7 @@ const LoginScreen = () => {
                 <h1 className="text-xl font-bold text-gray-900 md:text-2xl dark:text-white text-center mb-4">
                     Log in to your account
                 </h1>
-                <form className="space-y-4" action="#">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label
                             htmlFor="email"
@@ -47,6 +61,8 @@ const LoginScreen = () => {
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="transcendence@chamanismosSL.com"
                             required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div className="relative">
@@ -62,6 +78,8 @@ const LoginScreen = () => {
                             placeholder="••••••••"
                             className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-10"
                             required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <button
                             type="button"
@@ -105,13 +123,15 @@ const LoginScreen = () => {
                         </span>
                     </div>
                     <button
-                        //type="submit"
+                        type="button"
+                        onClick={handleGoogleLogin}
                         className="w-full text-white bg-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800"
                     >
                         Log in with Google
                     </button>
                     <button
-                        //type="submit"
+                        type="button"
+                        onClick={handle42Login}
                         className="w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
                     >
                         Log in with 42
@@ -122,7 +142,7 @@ const LoginScreen = () => {
                             to="/signup"
                             className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                         >
-                            Sign in
+                            Sign up
                         </Link>
                     </p>
                 </form>
