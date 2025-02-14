@@ -7,9 +7,30 @@ const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert(`Email: ${email}\nPassword: ${password}\nMethod: Standard`);
+    
+        try {
+            const response = await fetch("http://localhost:5001/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username: email, password }),
+            });
+    
+            if (!response.ok) {
+                throw new Error("Credenciales incorrectas");
+            }
+    
+            const data = await response.json();
+            alert(`Token recibido: ${data.token}`);
+            
+            // Aquí podrías guardar el token en localStorage o en un contexto de autenticación
+            localStorage.setItem("token", data.token);
+        } catch (error) {
+            alert(error);
+        }
     };
 
     const handleGoogleLogin = () => {
@@ -25,7 +46,7 @@ const LoginScreen = () => {
             className="min-h-screen w-full flex items-center justify-center dark:bg-gray-900"
             style={{
                 backgroundImage:
-                    "url(https://auth.42.fr/auth/resources/yyzrk/login/students/img/bkgrnd.jpg)",
+                    "url(https://cloud.appwrite.io/v1/storage/buckets/67a35dad003bd04ae78d/files/67af25c10012a475cd28/view?project=67a3581800176f541dfa&mode=admin)",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}

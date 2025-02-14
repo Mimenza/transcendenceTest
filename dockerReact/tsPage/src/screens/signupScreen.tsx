@@ -9,9 +9,28 @@ const SignupScreen = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
-    const handleSignin = (e: React.FormEvent) => {
+    const handleSignin = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert(`Email: ${email}\nUsername: ${username}\nPassword: ${password}\nMethod: Standard`);
+    
+        try {
+            const response = await fetch("http://localhost:5001/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(data.error || "Error en el registro");
+            }
+    
+            alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        } catch (error) {
+            alert(error);
+        }
     };
     
 
@@ -20,7 +39,7 @@ const SignupScreen = () => {
             className="min-h-screen w-full flex items-center justify-center dark:bg-gray-900"
             style={{
                 backgroundImage:
-                    "url(https://auth.42.fr/auth/resources/yyzrk/login/students/img/bkgrnd.jpg)",
+                    "url(https://cloud.appwrite.io/v1/storage/buckets/67a35dad003bd04ae78d/files/67af25c10012a475cd28/view?project=67a3581800176f541dfa&mode=admin)",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}
