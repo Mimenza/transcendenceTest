@@ -9,23 +9,23 @@ const LoginScreen = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-    
+
         try {
             const response = await fetch("http://localhost:5001/login", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ username: email, password }),
+                body: JSON.stringify({username: email, password})
             });
-    
+
             if (!response.ok) {
                 throw new Error("Credenciales incorrectas");
             }
-    
+
             const data = await response.json();
             alert(`Token recibido: ${data.token}`);
-            
+
             // Aquí podrías guardar el token en localStorage o en un contexto de autenticación
             localStorage.setItem("token", data.token);
         } catch (error) {
@@ -42,104 +42,71 @@ const LoginScreen = () => {
     };
 
     return (
-        <section
-            className="min-h-screen w-full flex items-center justify-center dark:bg-gray-900"
-            style={{
-                backgroundImage:
-                    "url(https://cloud.appwrite.io/v1/storage/buckets/67a35dad003bd04ae78d/files/67af25c10012a475cd28/view?project=67a3581800176f541dfa&mode=admin)",
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-            }}
-        >
-            <div className="w-full max-w-md bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700 p-6 sm:p-8">
-                <div className="text-center mb-6">
-                    <a
-                        href="#"
-                        className="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white"
+        <section className="flex min-h-screen w-full dark:bg-purple-4  items-center justify-center px-40">
+            <div className="bg-purple-5 flex-1 rounded-xl flex shadow">
+                <div className="bg-purple-2 flex-1 mt-5 mb-5 ml-5 rounded-xl hidden md:block"></div>
+                <div className="flex-1  flex flex-col items-center space-y-24 py-28">
+                    <div className="">
+                        <h1 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white text-center mb-4">
+                            Log in into your account
+                        </h1>
+                    </div>
+
+                    <form
+                        className="flex flex-col items-center h-full w-full max-w-full w-4/5 space-y-4"
+                        action="#"
                     >
-                        <img
-                            className="w-8 h-8 mr-2 rounded-full"
-                            src="https://cdn.intra.42.fr/users/a3bf1101c1980c29a913126c8ed5a2f2/anurtiag.jpeg"
-                            alt="logo"
-                        />
-                        Antton <span className="ml-1">&lt;3</span>
-                    </a>
-                </div>
-                <h1 className="text-xl font-bold text-gray-900 md:text-2xl dark:text-white text-center mb-4">
-                    Log in to your account
-                </h1>
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                        <label
-                            htmlFor="email"
-                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >
-                            Your email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="transcendence@chamanismosSL.com"
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="relative">
-                        <label
-                            htmlFor="password"
-                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        >
-                            Password
-                        </label>
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            id="password"
-                            placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-10"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-gray-400 mt-7"
-                            onClick={() => setShowPassword((prev) => !prev)}
-                        >
-                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                        </button>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <input
-                                id="remember"
-                                type="checkbox"
-                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                            />
+                        <div className="relative w-full">
                             <label
-                                htmlFor="remember"
-                                className="ml-2 text-sm text-gray-500 dark:text-gray-300"
+                                htmlFor="email"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                                Remember me
+                                Your email
                             </label>
+                            <input
+                                type="email"
+                                id="email"
+                                className="bg-purple-4 text-white-500 rounded-lg focus:ring-purple-1 focus:outline-none block w-full p-5 py-6"
+                                placeholder="transcendence@chamanismosSL.com"
+                                required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
                         </div>
-                        <a
-                            href="#"
-                            className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                        <div className="relative w-full">
+                            <label
+                                htmlFor="password"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                            >
+                                Password
+                            </label>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                id="password"
+                                placeholder="••••••••"
+                                className="bg-purple-4 text-white-500 rounded-lg focus:ring-purple-1 focus:outline-none block w-full p-5 py-6"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-gray-400 mt-7"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                            >
+                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </button>
+                        </div>
+                        <button
+                            onClick={handleSubmit}
+                            type="submit"
+                            className="w-full text-white bg-purple-1 hover:bg-purple-1 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                         >
-                            Forgot password?
-                        </a>
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    >
-                        Log in
-                    </button>
-                    <div className="relative flex items-center justify-center w-full my-8">
+                            Sign up
+                        </button>
+                        <div className="relative flex items-center justify-center w-full my-8">
                         <hr className="w-64 h-px bg-gray-200 border-0 dark:bg-gray-700 my-6" />
-                        <span className="absolute px-3 font-medium text-gray-900 bg-white left-1/2 transform -translate-x-1/2 dark:text-white dark:bg-gray-800">
+                        <span className="absolute px-3 font-medium text-white bg-purple-5 left-1/2 transform -translate-x-1/2">
                             or
                         </span>
                     </div>
@@ -157,16 +124,14 @@ const LoginScreen = () => {
                     >
                         Log in with 42
                     </button>
-                    <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
-                        Don’t have an account yet?{" "}
-                        <Link
-                            to="/signup"
-                            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        >
-                            Sign up
-                        </Link>
-                    </p>
-                </form>
+                        <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
+                            Don’t have an account yet?{" "}
+                            <Link to="/signup" className="font-medium text-purple-1 hover:underline">
+                                Sign up
+                            </Link>
+                        </p>
+                    </form>
+                </div>
             </div>
         </section>
     );

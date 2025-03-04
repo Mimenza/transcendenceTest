@@ -4,6 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        purple:{
+          "1": "#6d54b5",
+          "2": "#686275",
+          "3": "#5e586e",
+          "4": "#3c364c",
+          "5": "#2c2638"
+        },
         primary: {
           "50": "#eff6ff",
           "100": "#dbeafe",
