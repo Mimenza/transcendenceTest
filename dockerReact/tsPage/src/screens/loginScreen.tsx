@@ -1,6 +1,8 @@
 import React, {useState} from "react";
-import {Eye, EyeOff} from "lucide-react";
 import {Link} from "react-router-dom";
+
+import InputComponent from "../components/input";
+import ButtonComponent from "src/components/button";
 
 const LoginScreen = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -53,80 +55,41 @@ const LoginScreen = () => {
                     </div>
 
                     <form
-                        className="flex flex-col items-center h-full w-full max-w-full w-4/5 space-y-4"
+                        className="flex flex-col items-center h-full max-w-full w-4/5 space-y-4"
                         action="#"
                     >
-                        <div className="relative w-full">
-                            <label
-                                htmlFor="email"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >
-                                Your email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                className="bg-purple-4 text-white-500 rounded-lg focus:ring-purple-1 focus:outline-none block w-full p-5 py-6"
-                                placeholder="transcendence@chamanismosSL.com"
-                                required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className="relative w-full">
-                            <label
-                                htmlFor="password"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >
-                                Password
-                            </label>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                id="password"
-                                placeholder="••••••••"
-                                className="bg-purple-4 text-white-500 rounded-lg focus:ring-purple-1 focus:outline-none block w-full p-5 py-6"
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <button
-                                type="button"
-                                className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-gray-400 mt-7"
-                                onClick={() => setShowPassword((prev) => !prev)}
-                            >
-                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                            </button>
-                        </div>
-                        <button
-                            onClick={handleSubmit}
-                            type="submit"
-                            className="w-full text-white bg-purple-1 hover:bg-purple-1 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                        >
-                            Sign up
-                        </button>
+                        <InputComponent
+                            label="Your email"
+                            type="email"
+                            id="email"
+                            placeholder="transcendence@chamanismosSL.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <InputComponent
+                            label="Password"
+                            type="password"
+                            id="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                         <ButtonComponent id="" type="submit" value="Log in" onClick={handleSubmit} />
                         <div className="relative flex items-center justify-center w-full my-8">
-                        <hr className="w-64 h-px bg-gray-200 border-0 dark:bg-gray-700 my-6" />
-                        <span className="absolute px-3 font-medium text-white bg-purple-5 left-1/2 transform -translate-x-1/2">
-                            or
-                        </span>
-                    </div>
-                    <button
-                        type="button"
-                        onClick={handleGoogleLogin}
-                        className="w-full text-white bg-rose-600 hover:bg-rose-700 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-800"
-                    >
-                        Log in with Google
-                    </button>
-                    <button
-                        type="button"
-                        onClick={handle42Login}
-                        className="w-full text-white bg-secondary-600 hover:bg-secondary-700 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-600 dark:hover:bg-secondary-700 dark:focus:ring-secondary-800"
-                    >
-                        Log in with 42
-                    </button>
+                            <hr className="w-64 h-px bg-gray-200 border-0 dark:bg-gray-700 my-6" />
+                            <span className="absolute px-3 font-medium text-white bg-purple-5 left-1/2 transform -translate-x-1/2">
+                                or
+                            </span>
+                        </div>
+                        <ButtonComponent id="alternative" type="button" value="Log in with Google" onClick={handleGoogleLogin} />
+                        <ButtonComponent id="alternative" type="button" value="Log in with 42" onClick={handle42Login} />
+
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
                             Don’t have an account yet?{" "}
-                            <Link to="/signup" className="font-medium text-purple-1 hover:underline">
+                            <Link
+                                to="/signup"
+                                className="font-medium text-purple-1 hover:underline"
+                            >
                                 Sign up
                             </Link>
                         </p>
